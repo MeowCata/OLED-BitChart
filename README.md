@@ -62,6 +62,8 @@ If the current `data` value exceeds the extremes range, the maximum or minimum w
 
 If the line graph exceeds the screen width (128 pixels), the historical data will be cleared, and plotting will restart from the left side of the screen.  
 
+The code has been optimized to ensure clear separation between the line graph and text display. Enjoy data analyzing!
+
 **Recommended Use:**  
 - Suitable for plotting not *that* big variations in data(temperature, humidity, brightness change, gas concentration, acceleration, sound level, etc.)  
 - Not recommended for detecting large changes, such as axis angle variations, as significant value fluctuations can make the graph difficult to interpret and cause frequent refreshes.  
