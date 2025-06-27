@@ -18,7 +18,7 @@ namespace BitChart {
     /**
      * draw a line graph on your OLED
      */
-    //% block="draw line graph: data %data sample-rate %sampleRate jitter %jitter"
+    //% block="draw line graph: data %data sample-rate %sampleRate jitter %jitter top-margin %topMargin_i bottom-margin %bottomMargin_i"
     export function drawCurve(data: number, sampleRate: number, jitter: number, topMargin_i: number, bottomMargin_i: number): void {
         // 1. 检查是否需要更新极值
         let rangeChanged = false
