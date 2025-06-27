@@ -58,7 +58,7 @@ basic.forever(function () {
 
 ### Runtime Explanation  
 
-When the program starts, the maximum and minimum values (referred to as "extremes") of the graph are determined based on the current `data` input, with the range defined as `Δ range = 2 × jitter`. The current maximum and minimum values are displayed in the top-left and bottom-left corners of the screen(this feature may require manual adjustments depending on the extension and OLED screen used, as it hasn't been tested on other extensions or OLED screens. Why?Please view [here](https://github.com/MeowCata/oled-bitchart/blob/master/main.ts#L82)).  
+When the program starts, the maximum and minimum values (referred to as "extremes") of the graph are determined based on the current `data` input, with the range defined as `Δ range = 2 × jitter`. The current maximum and minimum values are displayed in the top-left and bottom-left corners of the screen(this feature may require manual adjustments *(Why?Please view [here](https://github.com/MeowCata/oled-bitchart/blob/master/main.ts#L82))* depending on the extension and OLED screen used, as it hasn't been tested on other extensions or OLED screens.).  
 
 If the current `data` value exceeds the extremes range, the maximum or minimum will be increased by one unit of `jitter`, the screen will be refreshed, and the graph will be redrawn with the updated range.  
 
