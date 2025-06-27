@@ -36,7 +36,7 @@ This project used `DeepSeek V3-0324` model for coding and can be used as an exte
 * `sampleRate`: The number of plots per second.  
 * `jitter`: The fluctuation range for the maximum and minimum values of the line graph. Since the graph automatically adjusts its range based on the input `data`, this process involves a full-screen refresh (which is slightly time-consuming). To minimize refresh frequency, the maximum/minimum value is increased in by one unit of `jitter` value. Additionally, this expands the range, avoiding unnecessary screen refreshes caused by sensor noise (see [Runtime Explanation](#runtime-explanation) for details).  
 
-Here's an example using `MPU6050` as a temperature sensor ([runtime photo](https://github.com/MeowCata/oled-bitchart#runtime-photo)) (MPU6050 extention: [pxt-mpu6050](https://github.com/zuoyu2014/pxt-mpu6050)):  
+Here's an example using `MPU6050` as a temperature sensor ([runtime photo](https://github.com/MeowCata/oled-bitchart#runtime-image)) (MPU6050 extention: [pxt-mpu6050](https://github.com/zuoyu2014/pxt-mpu6050)):  
 ```typescript
 YFOLED.init(128, 64)
 MPU6050.initMPU6050(MPU6050.MPU6050_I2C_ADDRESS.ADDR_0x68)
@@ -68,9 +68,8 @@ The code has been optimized to ensure clear separation between the line graph an
 - Suitable for plotting not *that* big variations in data(temperature, humidity, brightness change, gas concentration, acceleration, sound level, etc.)  
 - Not recommended for detecting large changes, such as axis angle variations, as significant value fluctuations can make the graph difficult to interpret and cause frequent refreshes.  
 
-#### Runtime Photo  
-![f2ea479c159aa8d519bdf9338b21b8cb](https://github.com/user-attachments/assets/5163fa3b-79af-4782-96a3-c6e68982e0ea)
-
+#### Runtime Image
+![runtime image](https://github.com/user-attachments/assets/e69214db-1130-4e20-8a17-336b99b9dda4)
 
 This project should be helpful for data analysis. By adjusting the `sampleRate`, you can achieve long-term plotting, but be mindful of OLED burn-in. It is recommended to use it in conjunction with the `Data Logger` extension for both short- and long-term monitoring.
 
