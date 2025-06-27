@@ -13,13 +13,24 @@ namespace BitChart {
     let maxValue = -Infinity
     let lastX = 0
     let needsFullRedraw = true
-    let topMargin_i, bottomMargin_i:number = 0
+    let topMargin_i = 10  // 初始化并明确类型
+    let bottomMargin_i = 10
 
     /**
      * draw a line graph on your OLED
      */
-    //% block="draw line graph: data %data sample-rate %sampleRate jitter %jitter top-margin %topMargin_i bottom-margin %bottomMargin_i"
-    export function drawCurve(data: number, sampleRate: number, jitter: number, topMargin_i: number, bottomMargin_i: number): void {
+    //% block="draw line graph: data %data sample-rate %sampleRate jitter %jitter top-margin %topMargin bottom-margin %bottomMargin"
+    export function drawCurve(
+        data: number, 
+        sampleRate: number, 
+        jitter: number, 
+        topMargin: number, 
+        bottomMargin: number
+    ): void {
+        // 更新边距值
+        topMargin_i = topMargin
+        bottomMargin_i = bottomMargin
+
         // 1. 检查是否需要更新极值
         let rangeChanged = false
         if (data < minValue) {
@@ -39,11 +50,9 @@ namespace BitChart {
 
         // 3. 决定刷新方式
         if (rangeChanged || needsFullRedraw || dataHistory.length === 1) {
-            // 需要全屏刷新
             fullRedraw()
             needsFullRedraw = false
         } else {
-            // 仅更新最新线段
             partialRedraw()
         }
 
@@ -63,25 +72,20 @@ namespace BitChart {
         YFOLED.clear()
     }
 
-    function fullRedraw() {
+    function fullRedraw(): void {
         // 1. 清除屏幕
         YFOLED.clear()
 
         // 2. 显示极值
-        // 最大值显示在顶部(第0行)
         YFOLED.writeNumNewLine(maxValue)
-        // 最小值显示在底部(第7行)
         for (let i = 0; i < 6; i++) {
             YFOLED.newLine()
         }
         YFOLED.writeNumNewLine(minValue)
 
         // 3. 绘制所有线段
-        // 计算绘图区域(避开文字显示区域)
-        const topMargin = topMargin_i    // 最大值下方留出空间
-        const bottomMargin = bottomMargin_i // 最小值上方留出空间
-        const graphY = topMargin
-        const graphHeight = 64 - topMargin - bottomMargin
+        const graphY = topMargin_i
+        const graphHeight = 64 - topMargin_i - bottomMargin_i
 
         for (let i = 1; i < dataHistory.length; i++) {
             const y1 = calculateY(dataHistory[i - 1], graphY, graphHeight)
@@ -90,13 +94,9 @@ namespace BitChart {
         }
     }
 
-    function partialRedraw() {
-        // 计算绘图区域(与fullRedraw一致)
-        const topMargin = 10
-        const bottomMargin = 10
-        const graphY = topMargin
-        const graphHeight = 64 - topMargin - bottomMargin
-
+    function partialRedraw(): void {
+        const graphY = topMargin_i
+        const graphHeight = 64 - topMargin_i - bottomMargin_i
         const len = dataHistory.length
 
         // 1. 清除上一条线段的末端
@@ -119,9 +119,8 @@ namespace BitChart {
     }
 
     function calculateY(value: number, graphY: number, graphHeight: number): number {
-        // 计算归一化Y坐标并确保在绘图区域内
         if (maxValue === minValue) {
-            return graphY + graphHeight / 2  // 所有值相同时显示在中间
+            return graphY + graphHeight / 2
         }
         let y = graphY + graphHeight - Math.round(
             (value - minValue) / (maxValue - minValue) * graphHeight
