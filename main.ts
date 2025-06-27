@@ -13,7 +13,7 @@ namespace BitChart {
     let maxValue = -Infinity
     let lastX = 0
     let needsFullRedraw = true
-    let topMargin_i, bottomMargin_i = 0
+    let topMargin_i, bottomMargin_i:number = 0
 
     /**
      * draw a line graph on your OLED
