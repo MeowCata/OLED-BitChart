@@ -34,7 +34,9 @@ This project used `DeepSeek V3-0324` model for coding and can be used as an exte
 **Explanation of the `drawCurve()` parameters:**  
 * `data`: The data to be plotted, which can be sensor readings.  
 * `sampleRate`: The number of plots per second.  
-* `jitter`: The fluctuation range for the maximum and minimum values of the line graph. Since the graph automatically adjusts its range based on the input `data`, this process involves a full-screen refresh (which is slightly time-consuming). To minimize refresh frequency, the maximum/minimum value is increased in by one unit of `jitter` value. Additionally, this expands the range, avoiding unnecessary screen refreshes caused by sensor noise (see [Runtime Explanation](#runtime-explanation) for details).  
+* `jitter`: The fluctuation range for the maximum and minimum values of the line graph. Since the graph automatically adjusts its range based on the input `data`, this process involves a full-screen refresh (which is slightly time-consuming). To minimize refresh frequency, the maximum/minimum value is increased in by one unit of `jitter` value. Additionally, this expands the range, avoiding unnecessary screen refreshes caused by sensor noise (see [Runtime Explanation](#runtime-explanation) for details).
+* `topMargin_i`: The distance from the top of the screen to the drawing area (unit: pixels). This parameter, along with the next one, is used to adjust the drawing area.
+* `bottomMargin_i`: The distance from the bottom of the screen to the drawing area (unit: pixels).
 
 Here's an example using `MPU6050` as a temperature sensor ([runtime photo](https://github.com/MeowCata/oled-bitchart#runtime-image)) (MPU6050 extention: [pxt-mpu6050](https://github.com/zuoyu2014/pxt-mpu6050)):  
 ```typescript
@@ -43,7 +45,7 @@ MPU6050.initMPU6050(MPU6050.MPU6050_I2C_ADDRESS.ADDR_0x68)
 basic.forever(function () {
     input.onButtonPressed(Button.A, function () {
         while (!input.buttonIsPressed(Button.B)) {
-            BitChart.drawCurve(Math.round(MPU6050.readTempature(MPU6050.MPU6050_I2C_ADDRESS.ADDR_0x68)*100)/100, 5, 0.3) //two-digit number and two decimal places---recommended
+            BitChart.drawCurve(Math.round(MPU6050.readTempature(MPU6050.MPU6050_I2C_ADDRESS.ADDR_0x68)*100)/100, 5, 0.3, 9, 9) //two-digit number and two decimal places---recommended
         }
         YFOLED.clear()
         BitChart.resetGraph()
