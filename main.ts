@@ -13,8 +13,8 @@ namespace BitChart {
     let maxValue = -Infinity
     let lastX = 0
     let needsFullRedraw = true
-    let topMargin_i = 10  // 初始化并明确类型
-    let bottomMargin_i = 10
+    let topMargin_i = 9  // 初始化并明确类型
+    let bottomMargin_i = 9
 
     /**
      * draw a line graph on your OLED
