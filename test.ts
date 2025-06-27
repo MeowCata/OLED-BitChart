@@ -3,7 +3,7 @@ YFOLED.init(128, 64)
 basic.forever(function () {
     input.onButtonPressed(Button.A, function () {
         while (!input.buttonIsPressed(Button.B)) {
-            BitChart.drawCurve(Math.round(input.lightLevel())*100)/100, 5, 10)
+            BitChart.drawCurve(Math.round(input.lightLevel())*100)/100, 5, 10, 9, 9)
         }
         YFOLED.clear()
         BitChart.resetGraph()
