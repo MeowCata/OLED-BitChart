@@ -77,8 +77,8 @@ namespace BitChart {
 
         // 3. 绘制所有线段
         // 计算绘图区域(避开文字显示区域)
-        const topMargin = 10    // 最大值下方留出空间
-        const bottomMargin = 10 // 最小值上方留出空间
+        const topMargin = 9    // 最大值下方留出空间
+        const bottomMargin = 9 // 最小值上方留出空间
         const graphY = topMargin
         const graphHeight = 64 - topMargin - bottomMargin
 
