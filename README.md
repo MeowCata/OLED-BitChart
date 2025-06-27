@@ -1,9 +1,6 @@
 # oled-bitchart
 A practical extension based on micro:bit for data analysis  
 
-![icon.png](https://github.com/MeowCata/oled-bitchart/blob/master/icon.png)
-[icon.png](https://github.com/MeowCata/oled-bitchart/blob/master/icon.png) by ChatGPT
-
 > [!TIP]
 > This MakeCode extension used [YF-OLED](https://github.com/YFROBOT-TM/pxt-yfrobot-oled) as its dependency, so you should get an OLED screen with an I2C address `0x3D`
 
@@ -22,8 +19,7 @@ YFOLED.clear() --> OLED.clear()
 
 ### 1. What Can This Extension Do?  
 
-If you've used the serial functionality of the micro:bit, you may know that MakeCode plots a line graph for the serial-printed data, as shown below:  
-
+If you've used the serial functionality of the micro:bit, you may know that MakeCode plots a line graph for the serial-printed data 
  
 However, if the micro:bit is not connected to a computer and is instead powered by an external source, this feature becomes unavailable.  
 
@@ -71,10 +67,10 @@ If the line graph exceeds the screen width (128 pixels), the historical data wil
 - Not recommended for detecting large changes, such as axis angle variations, as significant value fluctuations can make the graph difficult to interpret and cause frequent refreshes.  
 
 #### Runtime Photo  
+![f2ea479c159aa8d519bdf9338b21b8cb](https://github.com/user-attachments/assets/5163fa3b-79af-4782-96a3-c6e68982e0ea)
 
 
 This project should be helpful for data analysis. By adjusting the `sampleRate`, you can achieve long-term plotting, but be mindful of OLED burn-in. It is recommended to use it in conjunction with the `Data Logger` extension for both short- and long-term monitoring.
-
 
 
 > Open this page at [https://meowcata.github.io/oled-bitchart/](https://meowcata.github.io/oled-bitchart/)
@@ -87,16 +83,3 @@ This repository can be added as an **extension** in MakeCode.
 * click on **New Project**
 * click on **Extensions** under the gearwheel menu
 * search for **https://github.com/meowcata/oled-bitchart** and import
-
-## Edit this project
-
-To edit this repository in MakeCode.
-
-* open [https://makecode.microbit.org/](https://makecode.microbit.org/)
-* click on **Import** then click on **Import URL**
-* paste **https://github.com/meowcata/oled-bitchart** and click import
-
-#### Metadata (used for search, rendering)
-
-* for PXT/microbit
-<script src="https://makecode.com/gh-pages-embed.js"></script><script>makeCodeRender("{{ site.makecode.home_url }}", "{{ site.github.owner_name }}/{{ site.github.repository_name }}");</script>
