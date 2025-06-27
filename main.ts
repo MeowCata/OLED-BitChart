@@ -18,7 +18,7 @@ namespace BitChart {
      * draw a line graph on your OLED
      */
     //% block="draw line graph: data %data sample-rate %sampleRate jitter %jitter"
-    export function drawCurve(data: number, sampleRate: number, jitter: number): void {
+    export function drawCurve(data: number, sampleRate: number, jitter: number, topMargin_i: number, bottomMargin_i: number): void {
         // 1. 检查是否需要更新极值
         let rangeChanged = false
         if (data < minValue) {
@@ -77,8 +77,8 @@ namespace BitChart {
 
         // 3. 绘制所有线段
         // 计算绘图区域(避开文字显示区域)
-        const topMargin = 9    // 最大值下方留出空间
-        const bottomMargin = 9 // 最小值上方留出空间
+        const topMargin = topMargin_i    // 最大值下方留出空间
+        const bottomMargin = bottomMargin_i // 最小值上方留出空间
         const graphY = topMargin
         const graphHeight = 64 - topMargin - bottomMargin
 
