@@ -45,7 +45,7 @@ MPU6050.initMPU6050(MPU6050.MPU6050_I2C_ADDRESS.ADDR_0x68)
 basic.forever(function () {
     input.onButtonPressed(Button.A, function () {
         while (!input.buttonIsPressed(Button.B)) {
-            BitChart.drawCurve(Math.round(MPU6050.readTempature(MPU6050.MPU6050_I2C_ADDRESS.ADDR_0x68)*100)/100, 5, 0.3, 9, 9) //two-digit number and two decimal places---recommended
+            BitChart.drawCurve(Math.round(MPU6050.readTempature(MPU6050.MPU6050_I2C_ADDRESS.ADDR_0x68)*100)/100, 5, 0.3, 9, 9)
         }
         YFOLED.clear()
         BitChart.resetGraph()
@@ -58,13 +58,13 @@ basic.forever(function () {
 
 ### Runtime Explanation  
 
-When the program starts, the maximum and minimum values (referred to as "extremes") of the graph are determined based on the current `data` input, with the range defined as `Δ range = 2 × jitter`. The current maximum and minimum values are displayed in the top-left and bottom-left corners of the screen(default: two-digit number and two decimal places) (this feature may require manual adjustments depending on the extension and OLED screen used **and the data**, as it hasn't been tested on other extensions or OLED screens).  
+When the program starts, the maximum and minimum values (referred to as "extremes") of the graph are determined based on the current `data` input, with the range defined as `Δ range = 2 × jitter`. The current maximum and minimum values are displayed in the top-left and bottom-left corners of the screen(this feature may require manual adjustments depending on the extension and OLED screen used, as it hasn't been tested on other extensions or OLED screens. Why?Please view [here](https://github.com/MeowCata/oled-bitchart/blob/master/main.ts#L82)).  
 
 If the current `data` value exceeds the extremes range, the maximum or minimum will be increased by one unit of `jitter`, the screen will be refreshed, and the graph will be redrawn with the updated range.  
 
 If the line graph exceeds the screen width (128 pixels), the historical data will be cleared, and plotting will restart from the left side of the screen.  
 
-The code has been optimized to ensure clear separation between the line graph and text display. Enjoy data analyzing!
+The code has been optimized to ensure clear separation between the line graph and text display(by adjusting `topMargin`&`bottomMargin`). Enjoy data analyzing!
 
 **Recommended Use:**  
 - Suitable for plotting not *that* big variations in data(temperature, humidity, brightness change, gas concentration, acceleration, sound level, etc.)  
